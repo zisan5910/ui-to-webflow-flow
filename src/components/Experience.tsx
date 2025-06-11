@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+
 import { Element } from 'react-scroll';
 import { Briefcase, Target, HeartHandshake, ExternalLink, Facebook } from 'lucide-react';
 
@@ -43,20 +43,20 @@ const Experience = ({ language }: ExperienceProps) => {
             en: 'Built blood donor platform serving 68k+ community members',
             bn: '৬৮ হাজার+ সদস্যের জন্য রক্তদাতা প্ল্যাটফর্ম তৈরি করা হয়েছে',
           },
-          icon: <Target size={18} className="text-red-500" />,
+          icon: <Target size={18} className="text-red-600" />,
         },
         {
           description: {
             en: 'Implemented digital system reducing response time by 40%',
             bn: 'ডিজিটাল সিস্টেম চালু করে সাড়া দেওয়ার সময় ৪০% কমানো হয়েছে',
           },
-          icon: <HeartHandshake size={18} className="text-red-500" />,
+          icon: <HeartHandshake size={18} className="text-red-600" />,
         },
       ],
       borderColor: 'border-red-500',
-      bgColor: 'bg-red-100',
-      hoverBgColor: 'hover:bg-red-50',
-      iconColor: 'text-red-500',
+      bgColor: 'bg-red-50',
+      iconBg: 'bg-red-100',
+      iconColor: 'text-red-600',
     },
     {
       id: 'youth-hope',
@@ -85,20 +85,20 @@ const Experience = ({ language }: ExperienceProps) => {
             en: 'Developed platform for youth development and social services',
             bn: 'যুব উন্নয়ন ও সামাজিক সেবার জন্য প্ল্যাটফর্ম তৈরি করা হয়েছে',
           },
-          icon: <Target size={18} className="text-green-500" />,
+          icon: <Target size={18} className="text-emerald-600" />,
         },
         {
           description: {
             en: 'Created tools for volunteer management and event organization',
             bn: 'স্বেচ্ছাসেবী ব্যবস্থাপনা ও ইভেন্ট আয়োজনের জন্য টুলস তৈরি করা হয়েছে',
           },
-          icon: <HeartHandshake size={18} className="text-green-500" />,
+          icon: <HeartHandshake size={18} className="text-emerald-600" />,
         },
       ],
-      borderColor: 'border-green-500',
-      bgColor: 'bg-green-100',
-      hoverBgColor: 'hover:bg-green-50',
-      iconColor: 'text-green-500',
+      borderColor: 'border-emerald-500',
+      bgColor: 'bg-emerald-50',
+      iconBg: 'bg-emerald-100',
+      iconColor: 'text-emerald-600',
     },
     {
       id: 'projects',
@@ -158,21 +158,21 @@ const Experience = ({ language }: ExperienceProps) => {
         },
       ],
       borderColor: 'border-blue-500',
-      bgColor: 'bg-blue-100',
-      hoverBgColor: 'hover:bg-blue-50',
-      iconColor: 'text-blue-500',
+      bgColor: 'bg-blue-50',
+      iconBg: 'bg-blue-100',
+      iconColor: 'text-blue-600',
     },
   ];
 
   const renderProjectItem = (project: any, iconColor: string) => (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center gap-2 mb-2">
       <Target size={18} className={`flex-shrink-0 ${iconColor}`} />
-      <h4 className="font-medium">{project.name[language]}</h4>
+      <h4 className="font-medium text-gray-800">{project.name[language]}</h4>
       <a
         href={project.url}
         target="_blank"
         rel="noopener noreferrer"
-        className="text-blue-600 hover:text-blue-800 flex items-center gap-1 text-sm"
+        className="text-blue-600 hover:text-blue-800 flex items-center gap-1 text-sm transition-colors"
       >
         <ExternalLink size={16} />
         {language === 'en' ? 'View' : 'দেখুন'}
@@ -182,56 +182,44 @@ const Experience = ({ language }: ExperienceProps) => {
 
   return (
     <Element name="experience">
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        className="bg-white p-6 rounded-lg shadow-md"
+      <section
+        className="bg-white p-6 rounded-xl shadow-lg border border-gray-100"
         aria-labelledby="experience-heading"
       >
         <h2
           id="experience-heading"
-          className="text-2xl font-bold mb-8 flex items-center gap-2 text-green-700"
+          className="text-2xl font-bold mb-8 flex items-center gap-3 text-gray-800"
         >
-          <Briefcase className="text-emerald-500" />
+          <div className="p-2 bg-orange-100 rounded-lg">
+            <Briefcase className="text-orange-600" size={24} />
+          </div>
           {language === 'en' ? 'Experience' : 'অভিজ্ঞতা'}
         </h2>
 
         <div className="space-y-8">
           {experiences.map((experience) => (
-            <motion.div
+            <div
               key={experience.id}
-              initial={{ x: -20, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ type: 'spring', stiffness: 100 }}
-              className={`border-l-4 ${experience.borderColor} pl-4 py-4 ${experience.hoverBgColor} rounded-r-lg transition-colors duration-200 group`}
+              className={`border-l-4 ${experience.borderColor} pl-6 py-4 ${experience.bgColor} rounded-r-xl transition-colors duration-200`}
             >
               <div className="flex items-start gap-4">
-                <div
-                  className={`p-2 ${
-                    experience.bgColor
-                  } rounded-full group-hover:${experience.bgColor.replace(
-                    '100',
-                    '200'
-                  )} transition-colors flex-shrink-0`}
-                >
+                <div className={`p-3 ${experience.iconBg} rounded-xl shadow-sm border border-gray-200`}>
                   <Briefcase size={20} className={experience.iconColor} />
                 </div>
                 <div className="flex-1">
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-2">
-                    <h3 className="font-bold text-lg">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-2">
+                    <h3 className="font-bold text-lg text-gray-800">
                       {experience.title[language]}
                     </h3>
                     {experience.links && (
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-3">
                         {experience.links.map((link, index) => (
                           <a
                             key={index}
                             href={link.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:text-blue-800 flex items-center gap-1 text-sm"
+                            className="text-blue-600 hover:text-blue-800 flex items-center gap-1 text-sm transition-colors bg-white px-2 py-1 rounded-md shadow-sm"
                           >
                             {link.icon}
                             {link.label[language]}
@@ -241,12 +229,12 @@ const Experience = ({ language }: ExperienceProps) => {
                     )}
                   </div>
 
-                  <p className="text-gray-600 mt-1">{experience.role[language]}</p>
+                  <p className="text-gray-600 mb-3 font-medium">{experience.role[language]}</p>
 
                   {experience.achievements && (
-                    <ul className="mt-3 space-y-2 text-gray-700">
+                    <ul className="space-y-2 text-gray-700 mb-4">
                       {experience.achievements.map((achievement, index) => (
-                        <li key={index} className="flex items-start gap-2">
+                        <li key={index} className="flex items-start gap-3">
                           <span className="mt-1 flex-shrink-0">{achievement.icon}</span>
                           <span>{achievement.description[language]}</span>
                         </li>
@@ -255,11 +243,11 @@ const Experience = ({ language }: ExperienceProps) => {
                   )}
 
                   {experience.projects && (
-                    <div className="mt-3 space-y-4">
+                    <div className="space-y-3">
                       {experience.projects.map((project, index) => (
-                        <div key={index}>
+                        <div key={index} className="bg-white p-3 rounded-lg shadow-sm border border-gray-200">
                           {renderProjectItem(project, experience.iconColor)}
-                          <p className="text-gray-700 ml-7 mt-1">
+                          <p className="text-gray-700 ml-7 text-sm">
                             {project.description[language]}
                           </p>
                         </div>
@@ -268,10 +256,10 @@ const Experience = ({ language }: ExperienceProps) => {
                   )}
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.section>
+      </section>
     </Element>
   );
 };

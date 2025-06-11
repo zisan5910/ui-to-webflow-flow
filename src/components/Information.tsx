@@ -1,5 +1,4 @@
 
-import { motion } from 'framer-motion';
 import { Element } from 'react-scroll';
 import { Heart, ExternalLink } from 'lucide-react';
 
@@ -70,37 +69,30 @@ const Information = ({ language, age }: InformationProps) => {
 
   return (
     <Element name="family">
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        className="bg-white p-6 rounded-lg shadow-md"
+      <section
+        className="bg-white p-6 rounded-xl shadow-lg border border-gray-100"
         aria-labelledby="family-heading"
       >
         <h2
           id="family-heading"
-          className="text-2xl font-bold mb-8 flex items-center gap-2 text-green-700"
+          className="text-2xl font-bold mb-8 flex items-center gap-3 text-gray-800"
         >
-          <Heart className="text-red-500" aria-hidden="true" />
+          <div className="p-2 bg-pink-100 rounded-lg">
+            <Heart className="text-pink-600" size={24} />
+          </div>
           {language === 'en' ? 'Family' : 'পরিবার'}
         </h2>
 
         <div className="space-y-8">
           {/* Family Information */}
-          <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 100 }}
-            className="border-l-4 border-red-500 pl-4 py-2 hover:bg-red-50 rounded-r-lg transition-colors duration-200"
-          >
-            <h3 className="font-bold text-lg mb-4">
+          <div className="border-l-4 border-pink-500 pl-6 py-4 bg-pink-50 rounded-r-xl">
+            <h3 className="font-bold text-lg mb-4 text-gray-800">
               {familyData.familyInfo.title[language]}
             </h3>
             <ul className="space-y-3">
               {familyData.familyInfo.members.map((member, index) => (
-                <li key={index} className="text-gray-700">
-                  <span className="font-semibold">
+                <li key={index} className="text-gray-700 bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                  <span className="font-semibold text-gray-800">
                     {member.relation[language]}:
                   </span>{' '}
                   {member.name[language]}
@@ -109,7 +101,7 @@ const Information = ({ language, age }: InformationProps) => {
                       href={member.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 ml-1"
+                      className="text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 ml-2 transition-colors"
                       aria-label={`View ${member.relation[language]} document`}
                     >
                       <ExternalLink size={16} />
@@ -118,23 +110,17 @@ const Information = ({ language, age }: InformationProps) => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
 
           {/* Personal Information */}
-          <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 100, delay: 0.1 }}
-            className="border-l-4 border-green-500 pl-4 py-2 hover:bg-green-50 rounded-r-lg transition-colors duration-200"
-          >
-            <h3 className="font-bold text-lg mb-4">
+          <div className="border-l-4 border-indigo-500 pl-6 py-4 bg-indigo-50 rounded-r-xl">
+            <h3 className="font-bold text-lg mb-4 text-gray-800">
               {familyData.personalInfo.title[language]}
             </h3>
             <ul className="space-y-3">
               {familyData.personalInfo.details.map((detail, index) => (
-                <li key={index} className="text-gray-700">
-                  <span className="font-semibold">
+                <li key={index} className="text-gray-700 bg-white p-3 rounded-lg shadow-sm border border-gray-200">
+                  <span className="font-semibold text-gray-800">
                     {detail.label[language]}:
                   </span>{' '}
                   {detail.value[language]}
@@ -143,7 +129,7 @@ const Information = ({ language, age }: InformationProps) => {
                       href={detail.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 ml-1"
+                      className="text-blue-600 hover:text-blue-800 inline-flex items-center gap-1 ml-2 transition-colors"
                       aria-label={`View ${detail.label[language]} document`}
                     >
                       <ExternalLink size={16} />
@@ -152,9 +138,9 @@ const Information = ({ language, age }: InformationProps) => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
-      </motion.section>
+      </section>
     </Element>
   );
 };
