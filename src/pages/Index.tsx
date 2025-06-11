@@ -80,7 +80,7 @@ const Index = () => {
 
       <ProfileSection
         language={language}
-        content={content as any}
+        content={content}
         scrollToSection={scrollToSection}
       />
 
