@@ -61,13 +61,13 @@ const Index = () => {
     scroller.scrollTo(section, {
       duration: 800,
       smooth: true,
-      offset: -64,
+      offset: -80,
     });
     setActiveSection(section);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-secondary-50 to-primary-50">
       <Navigation 
         navigationItems={navigationItems}
         activeSection={activeSection}
@@ -84,8 +84,8 @@ const Index = () => {
         scrollToSection={scrollToSection}
       />
 
-      <main className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8">
+      <main className="container-responsive py-12 lg:py-16">
+        <div className="space-y-8 lg:space-y-12">
           <Element name="education">
             <Education language={language} />
           </Element>

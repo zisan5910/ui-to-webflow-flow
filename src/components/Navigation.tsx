@@ -39,25 +39,25 @@ const Navigation = ({
   const getIconColor = (id: string) => {
     switch (id.toLowerCase()) {
       case 'profile':
-        return 'text-blue-600';
+        return 'text-primary-600';
       case 'education':
-        return 'text-emerald-600';
+        return 'text-success-600';
       case 'courses':
-        return 'text-purple-600';
+        return 'text-accent-600';
       case 'experience':
-        return 'text-orange-600';
+        return 'text-warning-600';
       case 'certificates':
-        return 'text-red-600';
+        return 'text-danger-600';
       case 'skills':
-        return 'text-indigo-600';
+        return 'text-primary-700';
       case 'family':
-        return 'text-pink-600';
+        return 'text-accent-500';
       case 'contact':
-        return 'text-cyan-600';
+        return 'text-primary-500';
       case 'share':
-        return 'text-teal-600';
+        return 'text-success-500';
       default:
-        return 'text-gray-600';
+        return 'text-secondary-600';
     }
   };
 
@@ -66,38 +66,38 @@ const Navigation = ({
       className={cn(
         'fixed w-full z-50 transition-all duration-300',
         isScrolled 
-          ? 'bg-white/90 backdrop-blur-sm border-b border-gray-200 shadow-sm' 
-          : 'bg-white/95 backdrop-blur-sm border-b border-gray-100'
+          ? 'glass-effect shadow-elevated' 
+          : 'bg-white/95 backdrop-blur-sm border-b border-secondary-200'
       )}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+      <div className="container-responsive">
+        <div className="flex justify-between items-center h-16 lg:h-18">
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+            className="lg:hidden p-2 rounded-xl text-secondary-700 hover:bg-secondary-100 focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors"
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center space-x-2">
+          <div className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.target || item.id)}
                 className={cn(
-                  'flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-200',
+                  'nav-item',
                   activeSection === (item.target || item.id)
-                    ? 'bg-blue-50 text-blue-700 shadow-sm border border-blue-200'
-                    : 'text-gray-700 hover:text-gray-900 hover:bg-gray-50'
+                    ? 'nav-item-active'
+                    : 'nav-item-inactive'
                 )}
               >
                 <div className={`w-5 h-5 ${getIconColor(item.id)}`}>
                   {item.icon}
                 </div>
-                <span className="font-medium text-sm">
+                <span>
                   {item.id.charAt(0).toUpperCase() + item.id.slice(1)}
                 </span>
               </button>
@@ -107,12 +107,7 @@ const Navigation = ({
           {/* Language Toggle Button */}
           <button
             onClick={() => setLanguage(language === 'en' ? 'bn' : 'en')}
-            className={cn(
-              'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
-              'bg-gradient-to-r from-blue-600 to-purple-600 text-white',
-              'hover:from-blue-700 hover:to-purple-700 shadow-md',
-              'focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2'
-            )}
+            className="premium-button text-sm px-4 py-2"
           >
             {language === 'en' ? 'বাংলা' : 'English'}
           </button>
@@ -120,8 +115,8 @@ const Navigation = ({
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="lg:hidden bg-white border-t border-gray-100">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="lg:hidden bg-white border-t border-secondary-200 rounded-b-2xl shadow-elevated">
+            <div className="px-4 pt-4 pb-6 space-y-2">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
@@ -130,16 +125,16 @@ const Navigation = ({
                     setIsMenuOpen(false);
                   }}
                   className={cn(
-                    'w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200',
+                    'w-full nav-item',
                     activeSection === (item.target || item.id)
-                      ? 'bg-blue-50 text-blue-700 border border-blue-200'
-                      : 'text-gray-700 hover:bg-gray-50 hover:text-gray-900'
+                      ? 'nav-item-active'
+                      : 'nav-item-inactive'
                   )}
                 >
                   <div className={`w-6 h-6 ${getIconColor(item.id)}`}>
                     {item.icon}
                   </div>
-                  <span className="font-medium text-sm">
+                  <span>
                     {item.id.charAt(0).toUpperCase() + item.id.slice(1)}
                   </span>
                 </button>

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { Element } from 'react-scroll';
 import {
   Award,
@@ -50,7 +49,7 @@ const Skills = ({ language }: SkillsProps) => {
         { en: 'Problem Solving', bn: 'সমস্যা সমাধান' },
         { en: 'Professional Ethics', bn: 'পেশাদার নীতি' },
       ],
-      color: 'bg-green-50',
+      color: 'bg-success-50 border border-success-200',
     },
     communication: {
       title: {
@@ -63,7 +62,7 @@ const Skills = ({ language }: SkillsProps) => {
         { en: 'Presentation', bn: 'প্রেজেন্টেশন' },
         { en: 'Professional Email', bn: 'পেশাদার ইমেইল' },
       ],
-      color: 'bg-blue-50',
+      color: 'bg-primary-50 border border-primary-200',
     },
     additional: {
       title: {
@@ -76,75 +75,58 @@ const Skills = ({ language }: SkillsProps) => {
         { en: 'Web and App Development', bn: 'ওয়েব এবং এ্যাপ ডেভেলপমেন্ট' },
         { en: ' The concept of AI', bn: 'AI এর ধারণা' },
       ],
-      color: 'bg-purple-50',
+      color: 'bg-accent-50 border border-accent-200',
     },
   };
 
   return (
     <Element name="skills">
-      <motion.section
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-100px' }}
-        className="bg-white p-6 rounded-lg shadow-md"
-        aria-labelledby="skills-heading"
-      >
-        <h2
-          id="skills-heading"
-          className="text-2xl font-bold mb-8 flex items-center gap-2 text-green-700"
-        >
-          <Award className="text-emerald-500" aria-hidden="true" />
+      <section className="premium-section" aria-labelledby="skills-heading">
+        <h2 id="skills-heading" className="premium-title flex items-center gap-3">
+          <div className="section-icon bg-success-100">
+            <Award className="text-success-600" size={24} />
+          </div>
           {language === 'en' ? 'Skills' : 'দক্ষতা'}
         </h2>
 
         <div className="space-y-8">
           {/* Language Skills */}
-          <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            whileInView={{ x: 0, opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ type: 'spring', stiffness: 100 }}
-          >
-            <h3 className="font-bold text-lg flex items-center gap-2 mb-4">
-              <Languages
-                size={20}
-                className="text-blue-500"
-                aria-hidden="true"
-              />
+          <div>
+            <h3 className="premium-subtitle flex items-center gap-3 mb-6">
+              <Languages size={24} className="text-primary-600" />
               {skillsData.languages.title[language]}
             </h3>
-            <div className="space-y-4">
+            <div className="space-y-6">
               {skillsData.languages.skills.map((skill, index) => (
-                <div key={index} className="group">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-gray-700 group-hover:text-gray-900 transition-colors">
+                <div key={index} className="bg-white p-6 rounded-xl border border-secondary-200 shadow-soft">
+                  <div className="flex justify-between items-center mb-3">
+                    <span className="text-secondary-900 font-medium text-lg">
                       {skill.name[language]}
                     </span>
-                    <div className="flex">
+                    <div className="flex gap-1">
                       {[1, 2, 3, 4, 5].map((i) => (
                         <Star
                           key={i}
-                          size={16}
-                          className={`${
+                          size={20}
+                          className={
                             i <= skill.level
-                              ? 'text-yellow-500 fill-current'
-                              : 'text-gray-300'
-                          }`}
-                          aria-hidden="true"
+                              ? 'text-warning-500 fill-current'
+                              : 'text-secondary-300'
+                          }
                         />
                       ))}
                     </div>
                   </div>
-                  <div className="w-full bg-gray-200 rounded-full h-1.5">
+                  <div className="w-full bg-secondary-200 rounded-full h-3">
                     <div
-                      className="bg-yellow-500 h-1.5 rounded-full"
+                      className="bg-gradient-to-r from-warning-500 to-warning-600 h-3 rounded-full transition-all duration-300"
                       style={{ width: `${(skill.level / 5) * 100}%` }}
                     ></div>
                   </div>
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Other Skills Sections */}
           {[
@@ -152,53 +134,31 @@ const Skills = ({ language }: SkillsProps) => {
             skillsData.communication,
             skillsData.additional,
           ].map((section, sectionIndex) => (
-            <motion.div
-              key={sectionIndex}
-              initial={{ x: -20, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{
-                type: 'spring',
-                stiffness: 100,
-                delay: sectionIndex * 0.1,
-              }}
-            >
-              <h3 className="font-bold text-lg flex items-center gap-2 mb-4">
+            <div key={sectionIndex}>
+              <h3 className="premium-subtitle flex items-center gap-3 mb-6">
                 {sectionIndex === 0 ? (
-                  <Target
-                    size={20}
-                    className="text-green-500"
-                    aria-hidden="true"
-                  />
+                  <Target size={24} className="text-success-600" />
                 ) : sectionIndex === 1 ? (
-                  <MessageSquare
-                    size={20}
-                    className="text-blue-500"
-                    aria-hidden="true"
-                  />
+                  <MessageSquare size={24} className="text-primary-600" />
                 ) : (
-                  <PlusCircle
-                    size={20}
-                    className="text-purple-500"
-                    aria-hidden="true"
-                  />
+                  <PlusCircle size={24} className="text-accent-600" />
                 )}
                 {section.title[language]}
               </h3>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {section.skills.map((skill, skillIndex) => (
                   <div
                     key={skillIndex}
-                    className={`${section.color} p-3 rounded-lg hover:shadow-sm transition-all duration-200`}
+                    className={`${section.color} p-4 rounded-xl hover:shadow-soft transition-all duration-200 text-center font-medium`}
                   >
                     {skill[language]}
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.section>
+      </section>
     </Element>
   );
 };
