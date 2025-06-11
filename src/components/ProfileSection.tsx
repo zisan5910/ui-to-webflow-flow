@@ -18,43 +18,38 @@ const ProfileSection = ({
     <Element name="profile">
       <header
         className={cn(
-          'relative pt-20 sm:pt-24 lg:pt-32 pb-16 lg:pb-20 overflow-hidden',
-          'bg-gradient-to-br from-primary-900 via-primary-800 to-secondary-900',
+          'relative pt-24 pb-16 overflow-hidden',
+          'bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900',
           'text-white'
         )}
       >
         {/* Background Pattern */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-primary-700/20 to-transparent"></div>
-          <div className="absolute top-0 left-0 w-full h-full opacity-10">
-            <div className="absolute top-10 left-10 w-72 h-72 bg-primary-400 rounded-full mix-blend-multiply filter blur-xl"></div>
-            <div className="absolute top-0 right-4 w-72 h-72 bg-accent-400 rounded-full mix-blend-multiply filter blur-xl animate-pulse"></div>
-            <div className="absolute -bottom-8 left-20 w-72 h-72 bg-secondary-400 rounded-full mix-blend-multiply filter blur-xl"></div>
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-transparent via-blue-700/20 to-transparent"></div>
         </div>
 
-        <div className="container-responsive relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
             {/* Profile Image */}
-            <div className="relative shrink-0">
-              <div className="absolute inset-0 bg-gradient-to-br from-primary-400/30 to-accent-400/20 rounded-full blur-lg scale-110"></div>
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/30 to-blue-400/20 rounded-full blur-lg"></div>
               <img
                 src="/profile.jpg"
                 alt="Md Ridoan Mahmud Zisan"
-                className="w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64 rounded-full border-4 border-white/40 shadow-elevated relative z-10"
+                className="w-56 h-56 rounded-full border-4 border-cyan-400/40 shadow-2xl relative z-10"
               />
             </div>
 
             {/* Profile Content */}
-            <div className="flex-1 text-center lg:text-left max-w-2xl">
+            <div className="flex-1 text-center lg:text-left">
               <div>
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6 text-white leading-tight">
+                <h1 className="text-4xl md:text-5xl font-bold mb-4 text-white">
                   {content[language].name}
                 </h1>
-                <p className="text-lg sm:text-xl lg:text-2xl mb-6 lg:mb-8 text-primary-100">
+                <p className="text-xl md:text-2xl mb-6 text-cyan-100">
                   {content[language].role}
                 </p>
-                <p className="text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 mb-8 lg:mb-10 text-secondary-100 leading-relaxed">
+                <p className="text-lg max-w-2xl mx-auto lg:mx-0 mb-8 text-blue-100 leading-relaxed">
                   {content[language].statement}
                 </p>
               </div>
@@ -65,8 +60,9 @@ const ProfileSection = ({
                   href="/Resume.pdf"
                   download="Md Ridoan Mahmud Zisan.pdf"
                   className={cn(
-                    'premium-button bg-white text-primary-700 hover:bg-secondary-50',
-                    'border-2 border-white/20 shadow-elevated hover:shadow-elevated'
+                    'px-8 py-3 rounded-lg font-medium flex items-center justify-center gap-2',
+                    'bg-cyan-500 text-white hover:bg-cyan-600 shadow-lg hover:shadow-xl',
+                    'transition-all duration-200 border border-cyan-400'
                   )}
                 >
                   <Download size={20} />
@@ -74,7 +70,12 @@ const ProfileSection = ({
                 </a>
                 <button
                   onClick={() => scrollToSection('certificates')}
-                  className="premium-button-secondary bg-transparent border-white text-white hover:bg-white/10"
+                  className={cn(
+                    'px-8 py-3 rounded-lg font-medium flex items-center justify-center gap-2',
+                    'bg-transparent border-2 border-cyan-400 text-cyan-300',
+                    'hover:bg-cyan-400/10 hover:text-cyan-200 shadow-lg',
+                    'transition-all duration-200'
+                  )}
                 >
                   <ScrollText size={20} />
                   {content[language].certifications}
